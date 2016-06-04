@@ -1,0 +1,35 @@
+{
+  "name": "Lernkarten",
+  "description": "Boilerplate using AngularJS, SASS, Gulp, and Browserify while also utilizing best practices.",
+  "main": "",
+  "authors": [
+    "Jake Marsh <jakemmarsh@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "express",
+    "gulp",
+    "browserify",
+    "angular",
+    "sass",
+    "karma",
+    "jasmine",
+    "protractor",
+    "boilerplate"
+  ],
+  "homepage": "https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "ngFitText": "^4.2.0"
+  },
+  "ignoredDependencies": [
+    "angular"
+  ]
+}

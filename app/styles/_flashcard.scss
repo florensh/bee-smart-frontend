@@ -1,0 +1,206 @@
+.flashcard {
+  // width: 600px;
+  // height: 400px;
+  // background-color: white;
+  // position: absolute;
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
+  // margin: auto;
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  // background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+  // background-size: 100% 30px;
+  // padding: 20px;
+}
+.tile {
+  // color: white;
+  padding: 38px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+flashcard {
+  font-family: Trocchi, serif;
+  margin-right: 15px;
+  display: block;
+  perspective: 1000px;
+  width: 600px;
+  height: 400px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  > div.flashcard {
+    float: left;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    .back,
+    .front {
+      float: left;
+      display: block;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-style: preserve-3d;
+      transition: transform ease 1000ms;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+      background-size: 100% 30px;
+    }
+    .front {
+      z-index: 2;
+      text-align: center;
+      /* front tile styles go here! */
+    }
+    .back {
+      /* back tile styles go here! */
+      z-index: 1;
+    }
+  }
+}
+// .front::after {
+//   content: '';
+//   width: 100%;
+//   height: 100%;
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+//   transform-origin: 100% 100%;
+//   transform: rotateX(90deg) translateY(0px);
+//   transition: box-shadow 350ms;
+// }
+//
+// .back::after {
+//   content: '';
+//   width: 100%;
+//   height: 100%;
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+//   transform-origin: 100% 100%;
+//   transform: rotateX(90deg) translateY(0px);
+//   transition: box-shadow 350ms;
+// }
+flashcard[horizontal] {
+  .front {
+    transform: rotateY(0deg);
+  }
+  .back {
+    transform: rotateY(-180deg);
+  }
+  div.flashcard.flipped {
+    .front {
+      transform: rotateY(180deg);
+    }
+    .back {
+      transform: rotateY(0deg);
+    }
+  }
+}
+flashcard[vertical] {
+  .front {
+    transform: rotateX(0deg);
+  }
+  .back {
+    transform: rotateX(-180deg);
+  }
+  div.flipper.flipped {
+    .front {
+      transform: rotateX(180deg);
+    }
+    .back {
+      transform: rotateX(0deg);
+    }
+  }
+}
+.infoContainer {
+  text-align: center;
+  height: 600px;
+  width: 400px;
+  position: absolute;
+  // top: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -1000;
+}
+.resultContainer {
+  text-align: center;
+  height: 400px;
+  width: 600px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -1000;
+}
+.infoBar {
+  opacity: 0.6;
+  height: 60px;
+  width: 300px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: -1000;
+}
+.buttonBar {
+  height: 60px;
+  width: 300px;
+  position: relative;
+  bottom: -550px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: -1000;
+}
+.buttonBar a {
+  opacity: 0.4;
+  color: green;
+  text-decoration: none;
+}
+.buttonBar a:hover {
+  opacity: 0.5;
+}
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.cardAnimation {
+  /* start 'enter' transition */
+  &.ng-enter {
+    animation: 1.5s zoomIn;
+  }
+  /* end 'enter' transition */
+  &.ng-leave {
+    animation: 1.5s fadeOutDownBig;
+  }
+  &.ng-move {
+    animation: 1.5s pulse;
+  }
+}
+.deckContainer {
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
