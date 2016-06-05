@@ -17,7 +17,7 @@ function ImportCtrl($scope, $state, Deck) {
   $scope.files = [];
   $scope.$watch('files', function() {
     if ($scope.files.length > 0) {
-      console.log('hier');
+
       var fileReader = new FileReader();
 
       fileReader.onload = function(event) {
@@ -25,7 +25,7 @@ function ImportCtrl($scope, $state, Deck) {
         var questionWithDelimiter = event.target.result.match(questionRegex);
         var answerWithDelimiter = event.target.result.match(answerRegex);
 
-        console.log(answerWithDelimiter);
+        console.log($scope.files[0].name);
 
         let questions = _.map(questionWithDelimiter, function(str) {
           return removeChars(str, '{{', '}}')
@@ -38,14 +38,16 @@ function ImportCtrl($scope, $state, Deck) {
         let cards = _.map(_.zip(questions, answers), function(pair) {
           return _.zipObject(['question', 'answer'], pair)
         })
-        console.log(cards);
+
+
         var deck = Deck({
-          name: 'Deck 1',
+          name: $scope.files[0].name,
+          percent: 0,
           cards: cards
         })
 
         deck.save(function() {
-          $state.go('Study');
+          $state.go('Decks');
         })
       };
 

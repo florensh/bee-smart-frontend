@@ -17,7 +17,6 @@ import './services';
 import './directives';
 import 'angular-resource';
 import 'angular-spring-data-rest';
-
 require('angular-flippy');
 
 

@@ -28,15 +28,5 @@
 <div class="resultContainer" ng-show="studyCtrl.cards.length==0">
   <h1>Super gelernt liebe Biene!</h1>
   <h2>Du hast <strong class="animated infinite bounce">{{ ((studyCtrl.statistic.knownCards.length / studyCtrl.statistic.allCards.length)*100) | number : 2 }}%</strong> von deinen Karten gewusst. Wie möchtest du weiterlernen?</h2>
-  <ol>
-    <li>
-      <a href="" ng-click="studyCtrl.restartWithCards(studyCtrl.statistic.allCards)">Mit allen Karten?</a>
-    </li>
-    <li ng-show="studyCtrl.statistic.knownCards.length>0">
-      <a href="" ng-click="studyCtrl.restartWithCards(studyCtrl.statistic.knownCards)">Mit den richtigen Karten?</a>
-    </li>
-    <li ng-show="studyCtrl.statistic.unknownCards.length>0">
-      <a href="" ng-click="studyCtrl.restartWithCards(studyCtrl.statistic.unknownCards)">Mit den falschen Karten?</a>
-    </li>
-  </ol>
+  <h3><a ui-sref="Decks">zurück</a></h3>
 </div>

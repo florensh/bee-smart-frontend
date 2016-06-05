@@ -1,10 +1,12 @@
-function StudyCtrl($scope, Deck, $state) {
+function StudyCtrl($scope, Deck, $state, StudyService) {
   'ngInject';
 
-
+  var _ = require('lodash');
 
   // ViewModel
   const vm = this;
+  vm.deck = StudyService.currentDeck;
+  vm.cards = _.clone(vm.deck.cards);
 
   vm.statistic = {
     knownCards: [],
@@ -12,24 +14,6 @@ function StudyCtrl($scope, Deck, $state) {
     allCards: []
   }
 
-
-  Deck.query(function(decks) {
-    if (decks && decks.length > 0) {
-      vm.cards = decks[0].cards;
-    } else {
-      $state.go('Import');
-    }
-  })
-
-
-  vm.restartWithCards = function(cards) {
-    vm.statistic = {
-      knownCards: [],
-      unknownCards: [],
-      allCards: []
-    }
-    vm.cards = cards;
-  }
 
   vm.cardFlipped = false;
 
@@ -49,6 +33,11 @@ function StudyCtrl($scope, Deck, $state) {
 
     vm.cards.splice(0, 1);
     vm.cardFlipped = false;
+
+    if (vm.cards.length == 0) {
+      vm.deck.percent = (100 / vm.statistic.allCards.length) * vm.statistic.knownCards.length
+      vm.deck.save();
+    }
   };
 
 }

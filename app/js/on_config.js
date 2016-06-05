@@ -10,7 +10,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       templateUrl: 'home.html',
       title: 'Home'
     }).state('Study', {
-      url: '/',
+      url: '/study',
       controller: 'StudyCtrl as studyCtrl',
       templateUrl: 'study.html',
       title: 'Study'
@@ -19,6 +19,11 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       controller: 'ImportCtrl as importCtrl',
       templateUrl: 'import.html',
       title: 'Import'
+    }).state('Decks', {
+      url: '/',
+      controller: 'DecksCtrl as decksCtrl',
+      templateUrl: 'decks.html',
+      title: 'Decks'
     });
 
   $urlRouterProvider.otherwise('/');
