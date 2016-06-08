@@ -1,10 +1,11 @@
-function DeckService($http, SpringDataRestAdapter, AppSettings) {
+function DeckService($http, SpringDataRestAdapter, AppSettings, StudySession) {
   'ngInject';
 
   var _ = require('lodash');
 
   function Deck(deck) {
     if (deck._resources) {
+
       deck.resources = deck._resources('self', {}, {
         update: {
           method: 'PUT'
@@ -21,6 +22,34 @@ function DeckService($http, SpringDataRestAdapter, AppSettings) {
           callback && callback(deck);
         });
       };
+
+      deck.getSessions = function(callback) {
+        deck._resources('sessions').get(function(sessions) {
+          callback && callback(sessions._embedded.studySessions);
+        });
+      }
+
+      deck.saveSession = function(session, callback) {
+
+        StudySession(session).save(function(item) {
+          let link = item._links['self']['href']
+
+          $http({
+            method: 'POST',
+            url: deck._links['sessions']['href'],
+            data: link,
+            headers: {
+              'Content-Type': 'text/uri-list'
+            }
+          }).then(function(result) {
+            callback && callback(item);
+          }, function(error) {
+            console.log(error);
+          });
+        })
+
+      }
+
     } else {
       deck.save = function(callback) {
         Deck.resources.save(deck, function(item, headers) {

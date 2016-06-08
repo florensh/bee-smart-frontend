@@ -24,6 +24,11 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       controller: 'DecksCtrl as decksCtrl',
       templateUrl: 'decks.html',
       title: 'Decks'
+    }).state('Progress', {
+      url: '/progress',
+      controller: 'ProgressCtrl as progressCtrl',
+      templateUrl: 'progress.html',
+      title: 'Progress'
     });
 
   $urlRouterProvider.otherwise('/');

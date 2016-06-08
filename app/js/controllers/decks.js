@@ -16,6 +16,11 @@ function DecksCtrl(Deck, StudyService, $state) {
     $state.go("Study")
   }
 
+  vm.showProgress = function(deck) {
+    StudyService.currentDeck = deck;
+    $state.go("Progress")
+  }
+
 }
 
 export default {

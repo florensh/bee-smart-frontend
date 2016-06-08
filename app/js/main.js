@@ -4,6 +4,8 @@ require('angular-animate');
 require('angular-fontawesome');
 require('ng-file-upload');
 require('lodash');
+require('chart.js');
+require('angular-chart.js');
 
 // angular modules
 import constants from './constants';
@@ -33,7 +35,8 @@ const requires = [
   'picardy.fontawesome',
   'ngFileUpload',
   'ngResource',
-  'spring-data-rest'
+  'spring-data-rest',
+  'chart.js'
 ];
 
 // mount on window for testing
