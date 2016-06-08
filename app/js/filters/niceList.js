@@ -5,12 +5,18 @@ function NiceListFilter($sce) {
 
     var _ = require('lodash');
 
+    // let listSigns = ['>', '->']
+
     let firstLevelSign = '>'
     let secondLevelSign = '->'
     let firstLevelSignRpl = '**>'
     let secondLevelSignRpl = '~~@'
     let firstLevelRegex = /\*>((.|(\n|\r))*?)\*/g
     let secondLevelRegex = /\~@((.|(\n|\r))*?)(\*|~)/g
+
+    if(!_.startsWith(input, firstLevelSign)){
+      return $sce.trustAsHtml(input);
+    }
 
     function escapeRegExp(str) {
       return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");

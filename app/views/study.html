@@ -1,14 +1,15 @@
 <flashcard class="cardAnimation" ng-repeat="card in studyCtrl.cards" ng-if="$index == 0" flipped="studyCtrl.cardFlipped" on-card-clicked="studyCtrl.flipCard()" horizontal>
   <front>
-    <h2>{{ card.question }}</h2>
+    <span class="card-text">{{ card.question }}</span>
+    <span class="card-number">{{ studyCtrl.cards.length }}</span>
   </front>
   <back>
-    <h2 ng-bind-html="card.answer | nice"></h2>
+    <span class="card-text" ng-bind-html="card.answer | nice"></span>
   </back>
 </flashcard>
 
 <div ng-show="studyCtrl.cards.length>0" class="infoContainer">
-  <div class="infoBar">{{ studyCtrl.cards.length}}</div>
+  <!-- <div class="infoBar">{{ studyCtrl.cards.length}}</div> -->
   <div class="buttonBar">
     <a href="" ng-click="studyCtrl.answer(false)">
       <fa-stack size="large">

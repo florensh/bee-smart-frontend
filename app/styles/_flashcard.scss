@@ -1,21 +1,69 @@
-.flashcard {
-  // width: 600px;
-  // height: 400px;
-  // background-color: white;
-  // position: absolute;
-  // top: 0;
-  // bottom: 0;
-  // left: 0;
-  // right: 0;
-  // margin: auto;
-  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  // background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
-  // background-size: 100% 30px;
-  // padding: 20px;
+$card-width: 600px;
+$card-height: 400px;
+@media screen and (max-width: 1024px) {
+  flashcard {
+    width: $card-width / 3 * 2;
+    height: 14 * 20px;
+    > div.flashcard {
+      .back,
+      .front {
+        padding: 43px;
+        background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 20px;
+        background-size: 100% 20px;
+      }
+    }
+  }
+  .card-text {
+    font-size: $font-size--md;
+    font-weight: normal;
+    line-height: $half-space;
+  }
+  .card-number {
+    color: #888;
+    font-size: $font-size--xs;
+    font-style: italic;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+  }
+  .infoContainer {
+    height: 500px;
+  }
+}
+@media screen and (min-width: 1025px) {
+  flashcard {
+    width: $card-width;
+    height: 14 * 30px;
+    // padding: 30px;
+    > div.flashcard {
+      .back,
+      .front {
+        padding: 66px;
+        background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 30px;
+        background-size: 100% 30px;
+      }
+    }
+  }
+  .card-text {
+    font-size: $font-size--lg;
+    font-weight: normal;
+    line-height: $half-space * 3 / 2;
+  }
+  .card-number {
+    color: #888;
+    font-style: italic;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+  .infoContainer {
+    height: 700px;
+  }
+}
+.card-text ul {
+  margin: 0;
 }
 .tile {
-  // color: white;
-  padding: 38px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
@@ -24,8 +72,6 @@ flashcard {
   margin-right: 15px;
   display: block;
   perspective: 1000px;
-  width: 600px;
-  height: 400px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -51,8 +97,8 @@ flashcard {
       transform-style: preserve-3d;
       transition: transform ease 1000ms;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
-      background-size: 100% 30px;
+      // background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 20px;
+      // background-size: 100% 20px;
     }
     .front {
       z-index: 2;
@@ -90,6 +136,9 @@ flashcard {
 //   transform: rotateX(90deg) translateY(0px);
 //   transition: box-shadow 350ms;
 // }
+.card-text {
+  margin: 0;
+}
 flashcard[horizontal] {
   .front {
     transform: rotateY(0deg);
@@ -124,7 +173,6 @@ flashcard[vertical] {
 }
 .infoContainer {
   text-align: center;
-  height: 600px;
   width: 400px;
   position: absolute;
   // top: 0;
@@ -162,8 +210,8 @@ flashcard[vertical] {
 .buttonBar {
   height: 60px;
   width: 300px;
-  position: relative;
-  bottom: -550px;
+  position: absolute;
+  bottom: 0;
   left: 0;
   right: 0;
   margin-left: auto;

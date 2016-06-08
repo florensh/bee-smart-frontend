@@ -1,4 +1,4 @@
-function StudyService($http) {
+function StudyService() {
   'ngInject';
 
   const service = {};
