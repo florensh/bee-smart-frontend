@@ -1,3 +1,3 @@
 <h1>Decks</h1>
-<h2 ng-repeat="deck in decksCtrl.decks"><a ng-click="decksCtrl.study(deck)">{{ deck.name }} ({{ deck.cards.length }} Karten)</a> <a ng-click="decksCtrl.showProgress(deck)"><fa name="line-chart"></fa></a></h2>
+<h2 ng-repeat="deck in decksCtrl.decks | orderBy:'name'"><a ng-click="decksCtrl.study(deck)">{{ deck.name }} ({{ deck.cards.length }} Karten)</a> <a ng-click="decksCtrl.showProgress(deck)"><fa name="line-chart"></fa></a></h2>
 <a ui-sref="Import">import new</a>

@@ -6,8 +6,12 @@ function StudyCtrl($scope, Deck, $state, StudyService, StudySession) {
   // ViewModel
   const vm = this;
   vm.deck = StudyService.currentDeck;
+  let cards = _.clone(vm.deck.cards);
 
-  vm.cards = _.clone(vm.deck.cards);
+  vm.deck.getSessions(function(sessions) {
+    let oldSessions = sessions;
+    vm.cards = sortCardsToDecks(cards, sessions);
+  })
 
   vm.session = {
     knownCards: [],
@@ -23,6 +27,37 @@ function StudyCtrl($scope, Deck, $state, StudyService, StudySession) {
       vm.cardFlipped = !vm.cardFlipped;
     })
   };
+
+
+  function sortCardsToDecks(cards, sessions) {
+
+    if (!sessions || sessions.length == 0) {
+      return _.clone(cards);
+    }
+
+    let sortedSessions = _.orderBy(sessions, ['date'], ['desc']);
+
+    var mark = function(card) {
+      if (_.some(sortedSessions[0].unknownCards, card)) {
+        card.mark = 1
+      } else if (sortedSessions.length > 1 && _.some(sortedSessions[1].knownCards, card)) {
+        card.mark = 3
+      } else {
+        card.mark = 2
+      }
+
+      return card;
+    }
+
+    let markedCards = _
+      .chain(cards)
+      .clone()
+      .map(mark)
+      .sortBy('mark')
+      .value();
+
+    return markedCards;
+  }
 
   vm.answer = function(right) {
     if (right) {

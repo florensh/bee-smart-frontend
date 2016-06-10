@@ -18,14 +18,7 @@ $card-height: 400px;
     font-weight: normal;
     line-height: $half-space;
   }
-  .card-number {
-    color: #888;
-    font-size: $font-size--xs;
-    font-style: italic;
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-  }
+
   .infoContainer {
     height: 500px;
   }
@@ -49,16 +42,36 @@ $card-height: 400px;
     font-weight: normal;
     line-height: $half-space * 3 / 2;
   }
-  .card-number {
-    color: #888;
-    font-style: italic;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-  }
+
   .infoContainer {
     height: 700px;
   }
+}
+
+.card-number {
+  color: #888;
+  font-style: italic;
+  position: absolute;
+  bottom: 20px;
+  width:50px;
+  left:0;
+  right:0;
+  margin: 0 auto;
+}
+
+.card-mark {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.card-mark-1 {
+  color: #ff6666;
+}
+.card-mark-2 {
+  color: #ffff80;
+}
+.card-mark-3 {
+  color: #5cd65c;
 }
 .card-text ul {
   margin: 0;

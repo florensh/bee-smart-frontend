@@ -1,7 +1,8 @@
 <flashcard class="cardAnimation" ng-repeat="card in studyCtrl.cards" ng-if="$index == 0" flipped="studyCtrl.cardFlipped" on-card-clicked="studyCtrl.flipCard()" horizontal>
   <front>
     <span class="card-text">{{ card.question }}</span>
-    <span class="card-number">{{ studyCtrl.cards.length }}</span>
+    <span class="card-number">-{{ studyCtrl.cards.length }}-</span>
+    <span ng-show="card.mark" class="card-mark" ng-class="'card-mark-'+ card.mark"><fa name='circle' size="2"></fa></span>
   </front>
   <back>
     <span class="card-text" ng-bind-html="card.answer | nice"></span>
