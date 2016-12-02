@@ -65,7 +65,7 @@ function DeckService($http, SpringDataRestAdapter, AppSettings, StudySession) {
   }
 
   Deck.query = function(callback) {
-    var deferred = $http.get(AppSettings.apiUrl + '/decks');
+    var deferred = $http.get(AppSettings.apiUrl + '/decks?size=50');
     return SpringDataRestAdapter.process(deferred).then(function(data) {
       Deck.resources = data._resources('self');
       callback && callback(_.map(data._embeddedItems, function(item) {

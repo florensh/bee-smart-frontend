@@ -8,25 +8,14 @@ function ProgressCtrl($scope, Deck, $state, StudyService, StudySession) {
   vm.deck = StudyService.currentDeck;
   vm.deck.getSessions(function(sessions) {
 
-    var convertDate = function(str) {
-      var date = new Date(str);
-      var day = date.getDate();
-      var monthIndex = date.getMonth();
-      return day + '.' + (monthIndex + 1) + '.';
+    let shortDate = dateIsoString => {
+      let yearMonthDayArray = _.chain(dateIsoString).split('T', 1).head().split('-', 3).value()
+      return yearMonthDayArray[2] + '.' + yearMonthDayArray[1] + '.'
     }
 
-    vm.labels = _
-      .chain(sessions)
-      .sortBy('date')
-      .map(s => convertDate(s.date))
-      .value();
-
-    vm.data = [_
-      .chain(sessions)
-      .sortBy('date')
-      .map(s => Math.round(((100 / (s.knownCards.length + s.unknownCards.length)) * s.knownCards.length) * 100) / 100)
-      .value()
-    ];
+    let sortedSessions = _.sortBy(sessions, 'date')
+    vm.labels = _.map(sortedSessions, s => shortDate(s.date))
+    vm.data = [_.map(sortedSessions, s => Math.round(((100 / (s.knownCards.length + s.unknownCards.length)) * s.knownCards.length) * 100) / 100)]
 
     vm.series = [vm.deck.name];
   })
